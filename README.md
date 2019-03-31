@@ -18,6 +18,7 @@ In any of these cases, the Maybe object returns null, so it shouldn't be used in
 Instead of calling object methods on a drupal entity, you instead call them on a new Maybe object, and then get the result at the end:
 ```
 use Drupal\maybe\Maybe;
+...
 $output = (new Maybe($entity))->function1()->function2()->result();
 ```
 
