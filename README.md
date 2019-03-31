@@ -1,6 +1,6 @@
 # Maybe module for Drupal 8
 
-This module provides functionality that lets you access drupal entities without worrying about accidentally triggering an exception by returning null instead.
+This module lets you access drupal entities without worrying about accidentally triggering a fatal exception.
 
 The class is loosely based on the Maybe Monad, but customized for the particularities of PHP/Drupal and tailored specifically for accessing and traversing nested entities.
 
@@ -17,6 +17,12 @@ In any of these cases, the Maybe object returns null, so it shouldn't be used in
 
 Instead of calling object methods on a drupal entity, you instead call them on a new Maybe object, and then get the result at the end:
 ```
+use Drupal\maybe\Maybe;
+$output = (new Maybe($entity))->function1()->function2()->result();
+```
+
+To help make the syntax a bit more comprehensible, the module provides a simple maybe() function that can create the object for you:
+```
 $output = maybe($entity)->function1()->function2()->result();
 ```
 
@@ -30,7 +36,7 @@ That is the equivalent of this error-prone code:
 $variables['file_url'] = $paragraph->get('field_media_file')->referencedEntities()[0]->get('field_media_file')->referencedEntities()[0]->url();
 ```
 
-Without using Maybe, you would need to write 21 lines of code to traverse those references while protecting against exceptions:
+Without using Maybe, you would need to write 21 lines of code with 7 IF statements to traverse those references while protecting against exceptions:
 ```
 // Make sure we have a file_download paragraph with a field_media_file field.
 if ($paragraph->getType() == 'file_download') {
