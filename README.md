@@ -41,24 +41,31 @@ Without using Maybe, you would need to write 21 lines of code with 7 IF statemen
 ```
 // Make sure we have a file_download paragraph with a field_media_file field.
 if ($paragraph->getType() == 'file_download') {
+
   // Get the value of the field that references the media item.
   $media_reference = $paragraph->get('field_media_file');
   if ($media_reference) {
+  
     // Get the id for the referenced media identity.
     $media_id = $media_reference->getString();
     if ($media_id) {
+    
       // Load the referenced media entity.
       $media_entity = \Drupal\media\Entity\Media::load($media_id);
       if ($media_entity) {
+      
         // Get the value of the field that references the file.
         $file_reference = $media_entity->get('field_media_file');
         if($file_reference) {
+        
           // Get the id for the referenced file.
           $file_id = $file_reference->getString();
           if ($file_id) {
+          
             // Get the referenced file entity.
             $file_entity = \Drupal\file\Entity\File::load($file_id);
             if ($file_entity) {
+            
               // Save the url for the file for use by the twig template.
               $variables['file_url'] = $file_entity->url();
             }
