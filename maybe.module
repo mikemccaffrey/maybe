@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Allows you to access drupal entities without triggering exceptions.
+ */
+
+use Drupal\maybe\Maybe;
+
+// Simple accessor function to make it easier to create Maybe objects.
+function maybe($object) {
+ return new Maybe($object);
+}
