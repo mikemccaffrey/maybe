@@ -27,7 +27,7 @@ To help make the syntax a bit more comprehensible, the module provides a simple 
 $output = maybe($entity)->function1()->function2()->result();
 ```
 
-Here is an example of getting the download link for a file entity referenced by a media entity referenced by a paragraph entity:
+Here is an example from a theme preprocess function for getting the download link for a file entity referenced by a media entity referenced by a paragraph entity:
 ```
 $variables['file_url'] = maybe($paragraph)->get('field_media_file')->referencedEntities()->get('field_media_file')->referencedEntities()->url()->return();
 ```
