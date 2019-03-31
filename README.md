@@ -22,7 +22,7 @@ use Drupal\maybe\Maybe;
 $output = (new Maybe($entity))->function1()->function2()->result();
 ```
 
-To help make the syntax a bit more comprehensible, the module provides a simple maybe() function that can create the object for you:
+To help make the syntax a bit more comprehensible, the module provides a simple maybe() function that can access the namespace and create the object for you:
 ```
 $output = maybe($entity)->function1()->function2()->result();
 ```
