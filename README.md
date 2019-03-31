@@ -11,7 +11,7 @@ The module helps protect you from four common issues that would usually trigger 
 * Trying to access the first element of an unexpectedly empty array.
 * Trying to access an entity field that does not exist in the current object.
 
-In any of these cases, the Maybe object returns null, so it shouldn't be used in any cases where problems will occur if a result is not returned.
+In any of these cases, the Maybe object returns null, so it can be used whenever the lack of a result won't cause problems.
 
 ## Usage
 
