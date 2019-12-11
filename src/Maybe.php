@@ -39,9 +39,9 @@ class Maybe {
         }
       }
       // Call the method and save the resulting object or value, or null if the function doesn't exist.
-      $this->object = call_user_func_array(array($this->object,$method), $args);
+      $this->object = method_exists($this->object, $method) ? call_user_func_array(array($this->object, $method), $args) : null;
     }
-    
+
     // Return the updated Maybe object so additional methods can be chained onto it.
     return $this;
   }
