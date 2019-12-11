@@ -79,6 +79,10 @@ if ($paragraph->getType() == 'file_download') {
 
 ## Future development
 
-In the future, this module may be expanded to allow you to access more than the first item in an array, and possibly let you call methods on all the items in an array.
+Planned features:
+- access an arbitrary array item
+- call methods on all items in an array
+- return the propery of an object
+- alteratives to the ->return() function that specify the intended result type, such as ->string or ->array.
 
 Please feel free to submit an issue if you find a bug or would like to request a feature: https://github.com/mikemccaffrey/maybe
