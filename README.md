@@ -92,8 +92,15 @@ $output = maybe($entity)->function1()->function2()->return();
 
 Access a value when the current object is an array, which requires specifying the desired index:
 ```php
-$output = maybe($entity)->function1()->array(0)->return();
+$output = maybe($entity)->function1()->array(0)->function2()->return();
 ```
+
+If you omit this function, Maybe will run the next function called on the first item in the array, so this will return the same result:
+
+```php
+$output = maybe($entity)->function1()->function2()->return();
+```
+
 
 ## Future development
 
