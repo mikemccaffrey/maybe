@@ -15,30 +15,31 @@ In any of these cases, the Maybe object returns null, so it can be used whenever
 
 ## Usage
 
-Instead of calling object methods on a drupal entity, you instead call them on a new Maybe object, and then get the result at the end:
-```
+Instead of calling object methods on a drupal entity, you instead call them on a new Maybe object, and then use the return function to get the resulting object or value at the end:
+```php
 use Drupal\maybe\Maybe;
 ...
 $output = (new Maybe($entity))->function1()->function2()->return();
 ```
 
 To help make the syntax a bit more comprehensible, the module provides a simple maybe() function that can access the namespace and create the object for you:
-```
+```php
 $output = maybe($entity)->function1()->function2()->return();
 ```
+## Comparison
 
 Here is an example from a theme preprocess function for getting the download link of a file entity referenced by a media entity referenced by a paragraph entity:
-```
+```php
 $variables['file_url'] = maybe($paragraph)->get('field_media_file')->referencedEntities()->get('field_media_file')->referencedEntities()->url()->return();
 ```
 
 That is the equivalent of this error-prone code:
-```
+```php
 $variables['file_url'] = $paragraph->get('field_media_file')->referencedEntities()[0]->get('field_media_file')->referencedEntities()[0]->url();
 ```
 
 Without using Maybe, you would need to write 21 lines of code with 7 IF statements to traverse those references while protecting against exceptions:
-```
+```php
 // Make sure we have a file_download paragraph with a field_media_file field.
 if ($paragraph->getType() == 'file_download') {
 
@@ -76,11 +77,29 @@ if ($paragraph->getType() == 'file_download') {
   }
 }
 ```
+## Methods
+
+Most methods you will run on the Maybe object will be directly passed to the current object it contains. However, there are several functions that the Maybe object will handle itself:
+
+### ->return() 
+
+Call the return function at the end of your chain of object functions in order to fetch the result.
+```php
+$output = maybe($entity)->function1()->function2()->return();
+```
+
+### ->array($key)
+
+Access a value when the current object is an array, which requires specifying the desired index:
+```php
+$output = maybe($entity)->function1()->array(0)->return();
+```
 
 ## Future development
 
 Planned features:
-- access an arbitrary array item
+- array function defaults to 0?
+- direct access object properties
 - call methods on all items in an array
 - return the propery of an object
 - alteratives to the ->return() function that specify the intended result type, such as ->string or ->array.
