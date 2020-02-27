@@ -90,17 +90,21 @@ $output = maybe($entity)->function1()->function2()->return();
 
 ### ->array($key)
 
-Access a value when the current object is an array, which requires specifying the desired index:
+Access a value when the current object is an indexed array, which requires specifying the desired index:
 ```php
 $output = maybe($entity)->function1()->array(0)->function2()->return();
 ```
 
-If you omit this function, Maybe will run the next function called on the first item in the array, so this will return the same result:
+If you omit this function, Maybe will pass the next function to the first item in the array, so this will return the same result:
 
 ```php
 $output = maybe($entity)->function1()->function2()->return();
 ```
 
+You can associative arrays by passing a named key to the funtion:
+```php
+$output = maybe($entity)->function1()->array('my_array_key')->return();
+```
 
 ## Future development
 
