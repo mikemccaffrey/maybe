@@ -107,6 +107,11 @@ You can associative arrays by passing a named key to the function:
 $output = maybe($entity)->function1()->array('my_array_key')->return();
 ```
 
+Traverse nested arrays by passing a series of keys as a multiple arguments.
+```php
+$output = maybe($entity)->array('my_array_key', 0, 'value')->return();
+```
+
 ## Future development
 
 Planned features:

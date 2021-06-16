@@ -20,9 +20,12 @@ class Maybe {
     return $this->object;
   }
 
-  // Access the value for a key when the current object is an array.
-  function array($key) {
-    $this->object = is_array($this->object) && isset($this->object[$key]) ? $this->object[$key] : null;
+  // Access the value for a key (or keys) when the current object is an array.
+  function array() {
+    // Allow multiple arguements for traversing into nested arrays.
+    foreach (func_get_args() as $key) {
+      $this->object = is_array($this->object) && isset($this->object[$key]) ? $this->object[$key] : null;
+    }
     return $this;
   }
 
