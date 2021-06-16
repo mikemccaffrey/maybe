@@ -1,6 +1,6 @@
 # Maybe module for Drupal 8
 
-This module lets you access drupal entities without worrying about accidentally triggering a fatal exception.
+This module lets you access Drupal entities without worrying about accidentally triggering a fatal exception.
 
 The class is loosely based on the Maybe Monad, but customized for the particularities of PHP/Drupal and tailored specifically for accessing and traversing nested entities.
 
@@ -9,13 +9,13 @@ The module helps protect you from four common issues that would usually trigger 
 * Calling a method on null when the previous method did not return an expected object.
 * Calling a method that doesn't exist on the current object.
 * Trying to access the first element of an unexpectedly empty array.
-* Trying to access an entity field that does not exist in the current object.
+* Trying to access a field that does not exist in the current Drupal entity.
 
 In any of these cases, the Maybe object returns null, so it can be used whenever the lack of a result won't cause problems.
 
 ## Usage
 
-Instead of calling object methods on a drupal entity, you instead call them on a new Maybe object, and then use the return function to get the resulting object or value at the end:
+Instead of calling object methods on a Drupal entity, you instead call them on a new Maybe object, and then use the return function to get the resulting object or value at the end:
 ```php
 use Drupal\maybe\Maybe;
 ...
@@ -77,6 +77,7 @@ if ($paragraph->getType() == 'file_download') {
   }
 }
 ```
+
 ## Methods
 
 Most methods you will run on the Maybe object will be directly passed to the current object it contains. However, there are several functions that the Maybe object will handle itself:
@@ -110,9 +111,8 @@ $output = maybe($entity)->function1()->array('my_array_key')->return();
 
 Planned features:
 - array function defaults to 0?
-- direct access object properties
+- direct access object variables
 - call methods on all items in an array
-- return the propery of an object
-- alteratives to the ->return() function that specify the intended result type, such as ->string or ->array.
+- alternatives to the ->return() function that specify the intended result type, such as ->string or ->array.
 
 Please feel free to submit an issue if you find a bug or would like to request a feature: https://github.com/mikemccaffrey/maybe
