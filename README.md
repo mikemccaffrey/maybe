@@ -111,8 +111,9 @@ $output = maybe($entity)->function1()->array('my_array_key')->return();
 
 Planned features:
 - array function defaults to 0?
-- direct access object variables
-- call methods on all items in an array
-- alternatives to the ->return() function that specify the intended result type, such as ->string or ->array.
+- shorter a() function that is alias of array()
+- direct access to object variables
+- call a method on all items in an array
+- alternatives to the ->return() function that specify the intended result type, such as ->string() or ->array().
 
 Please feel free to submit an issue if you find a bug or would like to request a feature: https://github.com/mikemccaffrey/maybe
