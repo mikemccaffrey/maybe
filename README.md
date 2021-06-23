@@ -1,6 +1,6 @@
 # Maybe module for Drupal 8
 
-This module lets you access Drupal entities without worrying about accidentally triggering a fatal exception.
+This module lets you access Drupal entities without worrying about accidentally triggering a fatal exception, which is especially useful in theme preprocess functions.
 
 The class is loosely based on the Maybe Monad, but customized for the particularities of PHP/Drupal and tailored specifically for accessing and traversing nested entities.
 
