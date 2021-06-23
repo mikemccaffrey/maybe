@@ -89,6 +89,13 @@ Call the return function at the end of your chain of object functions in order t
 $output = maybe($entity)->function1()->function2()->return();
 ```
 
+### ->property('name')
+
+Access a property of the current object.
+```php
+$output = maybe($entity)->function1()->property('my_property_name')->function2()->return();
+```
+
 ### ->array($key, [$key2, ..])
 
 Access a value when the current object is an indexed array, which requires specifying the desired index:
@@ -114,10 +121,9 @@ $output = maybe($entity)->array('my_array_key', 0, 'value')->return();
 
 ## Future development
 
-Planned features:
+Potential features:
 - array function defaults to 0?
 - shorter a() function that is alias of array()
-- direct access to object variables
 - call a method on all items in an array
 - alternatives to the ->return() function that specify the intended result type, such as ->string() or ->array().
 
