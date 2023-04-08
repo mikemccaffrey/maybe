@@ -1,5 +1,5 @@
 name: Maybe
 type: module
 description: 'Allows you to access drupal entities without triggering exceptions.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 version: '8.x-1.x-dev'
