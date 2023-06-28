@@ -31,7 +31,7 @@ class Maybe {
 
   // Access the value stored in an object property.
   function property($name) {
-    $this->object = property_exists($this->object, $name) ? $this->object->$name : null;
+    $this->object = (is_object($this->object) && property_exists($this->object, $name)) ? $this->object->$name : null;
     return $this;
   }
 
