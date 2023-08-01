@@ -64,8 +64,8 @@ if ($paragraph->hasField('field_media_file')) {
         // Get the field that references the file.
         $file_reference = $media_entity->get('field_media_file');
 
-        // Ensure this is actually a reference field.
-        if ($file_reference->getFieldDefinition()->getType() == "entity_reference_revisions") {
+        // Ensure this is actually an image field that references files.
+        if ($file_reference->getFieldDefinition()->getType() == "image") {
 
           // Get file entities.
           $file_entities = $file_reference->referencedEntities();
