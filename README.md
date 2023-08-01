@@ -61,7 +61,7 @@ if ($paragraph->hasField('field_media_file')) {
       // Ensure this entity has the needed file reference field.
       if ($media_entity->hasField('field_media_file')) {
 
-        // Get the value of the field that references the file.
+        // Get the field that references the file.
         $file_reference = $media_entity->get('field_media_file');
 
         // Ensure this is actually a reference field.
