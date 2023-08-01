@@ -41,31 +41,43 @@ $variables['file_url'] = $paragraph->get('field_media_file')->referencedEntities
 Without using Maybe, you would need to write 21 lines of code with 7 IF statements to traverse those references while protecting against exceptions:
 ```php
 // Make sure we have a file_download paragraph with a field_media_file field.
-if ($paragraph->getType() == 'file_download') {
+if ($paragraph->hasField('field_media_file')) {
 
-  // Get the value of the field that references the media item.
-  $media_reference = $paragraph->get('field_media_file');
-  if ($media_reference) {
+  // Get the field that references the media item.
+  $field_media_file = $paragraph->get('field_media_file');
 
-    // Get the id for the referenced media identity.
-    $media_id = $media_reference->getString();
-    if ($media_id) {
+  // Ensure this is actually a reference field.
+  if ($media_reference->getFieldDefinition()->getType() == "entity_reference_revisions") {
 
-      // Load the referenced media entity.
-      $media_entity = \Drupal\media\Entity\Media::load($media_id);
-      if ($media_entity) {
+    // Get referenced entities.
+    $media_entities = $media_reference->referencedEntities();
+
+    // Ensure that there are entities referenced by the field.
+    if (!empty($media_entities)) {
+
+      // We only need to use the first media entity.
+      $media_entity = $media_entities[0];
+
+      // Ensure this entity has the needed file reference field.
+      if ($media_entity->hasField('field_media_file')) {
 
         // Get the value of the field that references the file.
         $file_reference = $media_entity->get('field_media_file');
-        if($file_reference) {
 
-          // Get the id for the referenced file.
-          $file_id = $file_reference->getString();
-          if ($file_id) {
+        // Ensure this is actually a reference field.
+        if ($file_reference->getFieldDefinition()->getType() == "entity_reference_revisions") {
 
-            // Get the referenced file entity.
-            $file_entity = \Drupal\file\Entity\File::load($file_id);
-            if ($file_entity) {
+          // Get file entities.
+          $file_entities = $file_reference->referencedEntities();
+
+          // Make sure that there are entities referenced by the field.
+          if (!empty($file_entities)) {
+
+            // We only need to use the first entity.
+            $file_entity = $file_entities[0];
+
+            // Make sure that the referenced entity is a file.
+            if ($file_entity->getEntityType()->id() = "file") {
 
               // Save the url for the file for use by the twig template.
               $variables['file_url'] = $file_entity->url();
